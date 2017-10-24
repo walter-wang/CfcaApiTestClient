@@ -78,6 +78,14 @@
             this.DecryptValidationResultBtn = new System.Windows.Forms.Button();
             this.EncryptedValidationResult = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.ValidDate = new System.Windows.Forms.TextBox();
+            this.CVN2 = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.ThreeParamatersRadioBtn = new System.Windows.Forms.RadioButton();
+            this.FourParamatersRadioBtn = new System.Windows.Forms.RadioButton();
+            this.CellPhoneNumber = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.TopPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -373,6 +381,14 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.CellPhoneNumber);
+            this.tabPage4.Controls.Add(this.label20);
+            this.tabPage4.Controls.Add(this.FourParamatersRadioBtn);
+            this.tabPage4.Controls.Add(this.ThreeParamatersRadioBtn);
+            this.tabPage4.Controls.Add(this.CVN2);
+            this.tabPage4.Controls.Add(this.label19);
+            this.tabPage4.Controls.Add(this.ValidDate);
+            this.tabPage4.Controls.Add(this.label18);
             this.tabPage4.Controls.Add(this.CardNumber);
             this.tabPage4.Controls.Add(this.label17);
             this.tabPage4.Controls.Add(this.CardTypes);
@@ -421,6 +437,7 @@
             this.CardTypes.Name = "CardTypes";
             this.CardTypes.Size = new System.Drawing.Size(221, 23);
             this.CardTypes.TabIndex = 22;
+            this.CardTypes.SelectedValueChanged += new System.EventHandler(this.CardTypes_SelectedValueChanged);
             // 
             // label16
             // 
@@ -577,6 +594,81 @@
             this.label14.TabIndex = 10;
             this.label14.Text = "Encrypted Validation Result:";
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(8, 152);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(95, 15);
+            this.label18.TabIndex = 25;
+            this.label18.Text = "Valid Date:";
+            // 
+            // ValidDate
+            // 
+            this.ValidDate.Location = new System.Drawing.Point(109, 149);
+            this.ValidDate.Name = "ValidDate";
+            this.ValidDate.Size = new System.Drawing.Size(213, 24);
+            this.ValidDate.TabIndex = 26;
+            this.ValidDate.Visible = false;
+            // 
+            // CVN2
+            // 
+            this.CVN2.Location = new System.Drawing.Point(487, 149);
+            this.CVN2.Name = "CVN2";
+            this.CVN2.Size = new System.Drawing.Size(213, 24);
+            this.CVN2.TabIndex = 28;
+            this.CVN2.Visible = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(386, 152);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(47, 15);
+            this.label19.TabIndex = 27;
+            this.label19.Text = "CVN2:";
+            // 
+            // ThreeParamatersRadioBtn
+            // 
+            this.ThreeParamatersRadioBtn.AutoSize = true;
+            this.ThreeParamatersRadioBtn.Checked = true;
+            this.ThreeParamatersRadioBtn.Location = new System.Drawing.Point(579, 10);
+            this.ThreeParamatersRadioBtn.Name = "ThreeParamatersRadioBtn";
+            this.ThreeParamatersRadioBtn.Size = new System.Drawing.Size(121, 19);
+            this.ThreeParamatersRadioBtn.TabIndex = 29;
+            this.ThreeParamatersRadioBtn.TabStop = true;
+            this.ThreeParamatersRadioBtn.Text = "3 Paramaters";
+            this.ThreeParamatersRadioBtn.UseVisualStyleBackColor = true;
+            this.ThreeParamatersRadioBtn.CheckedChanged += new System.EventHandler(this.ThreeParamatersRadioBtn_CheckedChanged);
+            // 
+            // FourParamatersRadioBtn
+            // 
+            this.FourParamatersRadioBtn.AutoSize = true;
+            this.FourParamatersRadioBtn.Location = new System.Drawing.Point(706, 9);
+            this.FourParamatersRadioBtn.Name = "FourParamatersRadioBtn";
+            this.FourParamatersRadioBtn.Size = new System.Drawing.Size(121, 19);
+            this.FourParamatersRadioBtn.TabIndex = 30;
+            this.FourParamatersRadioBtn.Text = "4 Paramaters";
+            this.FourParamatersRadioBtn.UseVisualStyleBackColor = true;
+            this.FourParamatersRadioBtn.CheckedChanged += new System.EventHandler(this.FourParamatersRadioBtn_CheckedChanged);
+            // 
+            // CellPhoneNumber
+            // 
+            this.CellPhoneNumber.Location = new System.Drawing.Point(165, 181);
+            this.CellPhoneNumber.Name = "CellPhoneNumber";
+            this.CellPhoneNumber.Size = new System.Drawing.Size(535, 24);
+            this.CellPhoneNumber.TabIndex = 32;
+            this.CellPhoneNumber.Visible = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(8, 184);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(151, 15);
+            this.label20.TabIndex = 31;
+            this.label20.Text = "Cell Phone Number:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -659,6 +751,14 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox CardNumber;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox ValidDate;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox CVN2;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.RadioButton FourParamatersRadioBtn;
+        private System.Windows.Forms.RadioButton ThreeParamatersRadioBtn;
+        private System.Windows.Forms.TextBox CellPhoneNumber;
+        private System.Windows.Forms.Label label20;
     }
 }
 

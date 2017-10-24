@@ -51,7 +51,7 @@ namespace CfcaApiTestClient
             APIUrl.Text = CFCAAPI.Default.APIUrl;
             UserAccount.Text = CFCAAPI.Default.UserAccount;
 
-            
+
         }
 
         /// <summary>
@@ -134,9 +134,9 @@ namespace CfcaApiTestClient
 
             dataMessage = dataMessage +
                 ",\"body\":{\"keyType\":\"0\",\"validationTime\":\"2\",\"lastKeyGenTime\":\"" +
-                CFCAAPI.Default.PrivateAESKeyTime + 
-                "\",\"lastKey\":\"" + 
-                CFCAAPI.Default.PrivateAESKey + 
+                CFCAAPI.Default.PrivateAESKeyTime +
+                "\",\"lastKey\":\"" +
+                CFCAAPI.Default.PrivateAESKey +
                 "\"}";
 
             GetNewPrivateKeyLog.Text += "Generate data message:" + Environment.NewLine;
@@ -192,28 +192,101 @@ namespace CfcaApiTestClient
             BankCardValidationLog.Text = string.Empty;
             BankCardValidationAPIMessage.Text = string.Empty;
 
-            string messageHeader = generateMessageHeader("CF207b0004");
+            string messageHeader = string.Empty;
+            if (ThreeParamatersRadioBtn.Checked)
+            {
+                messageHeader = generateMessageHeader("CF207b0004");
+            }
+            else
+            {
+                messageHeader = generateMessageHeader("CF207b0001");
+            }
 
             BankCardValidationLog.Text += "Generate Message Header:" + Environment.NewLine;
             BankCardValidationLog.Text += messageHeader + Environment.NewLine;
 
-            string messageBody = "{\"personName\":\"" +
-                UserName.Text +
-                "\",\"identityType\":\"" +
-                CertificateType.Text +
-                "\",\"identityNumber\":\"" +
-                CertificateNumber.Text +
-                "\",\"cardType\":\"" +
-                CardTypes.Text +
-                "\",\"cardNumber\":\"" +
-                CardNumber.Text +
-                "\"}";
+            string messageBody = string.Empty;
+
+            if (ThreeParamatersRadioBtn.Checked)
+            {
+                if (CardTypes.Text == "10")
+                {
+                    messageBody = "{\"personName\":\"" +
+                        UserName.Text +
+                        "\",\"identityType\":\"" +
+                        CertificateType.Text +
+                        "\",\"identityNumber\":\"" +
+                        CertificateNumber.Text +
+                        "\",\"cardType\":\"" +
+                        CardTypes.Text +
+                        "\",\"cardNumber\":\"" +
+                        CardNumber.Text +
+                        "\"}";
+                }
+                else
+                {
+                    messageBody = "{\"personName\":\"" +
+                        UserName.Text +
+                        "\",\"identityType\":\"" +
+                        CertificateType.Text +
+                        "\",\"identityNumber\":\"" +
+                        CertificateNumber.Text +
+                        "\",\"cardType\":\"" +
+                        CardTypes.Text +
+                        "\",\"cardNumber\":\"" +
+                        CardNumber.Text +
+                        "\",\"validDate\":\"" +
+                        ValidDate.Text +
+                        "\",\"cvn2\":\"" +
+                        CVN2.Text +
+                        "\"}";
+                }
+            }
+            else
+            {
+                if (CardTypes.Text == "10")
+                {
+                    messageBody = "{\"personName\":\"" +
+                        UserName.Text +
+                        "\",\"identityType\":\"" +
+                        CertificateType.Text +
+                        "\",\"identityNumber\":\"" +
+                        CertificateNumber.Text +
+                        "\",\"cardType\":\"" +
+                        CardTypes.Text +
+                        "\",\"cardNumber\":\"" +
+                        CardNumber.Text +
+                        "\",\"cellPhoneNumber\":\"" +
+                        CellPhoneNumber.Text +
+                        "\"}";
+                }
+                else
+                {
+                    messageBody = "{\"personName\":\"" +
+                        UserName.Text +
+                        "\",\"identityType\":\"" +
+                        CertificateType.Text +
+                        "\",\"identityNumber\":\"" +
+                        CertificateNumber.Text +
+                        "\",\"cardType\":\"" +
+                        CardTypes.Text +
+                        "\",\"cardNumber\":\"" +
+                        CardNumber.Text +
+                        "\",\"cellPhoneNumber\":\"" +
+                        CellPhoneNumber.Text +
+                        "\",\"validDate\":\"" +
+                        ValidDate.Text +
+                        "\",\"cvn2\":\"" +
+                        CVN2.Text +
+                        "\"}";
+                }
+            }
 
             BankCardValidationLog.Text += "Generate Message Body:" + Environment.NewLine;
             BankCardValidationLog.Text += messageBody + Environment.NewLine;
 
             string encryptedMessageBody = AESHelper.EncryptStringToBase64_Aes(messageBody, CFCAAPI.Default.PrivateAESKey, CFCAAPI.Default.FixedAESIV);
-            
+
             BankCardValidationLog.Text += "Encrypt Message Body:" + Environment.NewLine;
             BankCardValidationLog.Text += encryptedMessageBody + Environment.NewLine;
 
@@ -233,6 +306,11 @@ namespace CfcaApiTestClient
             BankCardValidationLog.Text += BankCardValidationAPIMessage.Text;
         }
 
+        /// <summary>
+        /// Handles the Click event of the DecryptValidationResultBtn control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void DecryptValidationResultBtn_Click(object sender, EventArgs e)
         {
             DecryptedValidationResult.Text = string.Empty;
@@ -248,6 +326,55 @@ namespace CfcaApiTestClient
             }
 
             DecryptedValidationResult.Text = AESHelper.DecryptStringFromBytes_Aes(encryptedValidationResultArry, CFCAAPI.Default.PrivateAESKey, CFCAAPI.Default.FixedAESIV);
+        }
+
+        /// <summary>
+        /// Handles the SelectedValueChanged event of the CardTypes control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void CardTypes_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (CardTypes.Text == "20")
+            {
+                ValidDate.Visible = true;
+                CVN2.Visible = true;
+            }
+            else
+            {
+                ValidDate.Visible = false;
+                ValidDate.Text = string.Empty;
+
+                CVN2.Visible = false;
+                CVN2.Text = string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Handles the CheckedChanged event of the ThreeParamatersRadioBtn control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ThreeParamatersRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ThreeParamatersRadioBtn.Checked)
+            {
+                CellPhoneNumber.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// Handles the CheckedChanged event of the FourParamatersRadioBtn control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void FourParamatersRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FourParamatersRadioBtn.Checked)
+            {
+                CellPhoneNumber.Text = string.Empty;
+                CellPhoneNumber.Visible = true;
+            }
         }
     }
 }
