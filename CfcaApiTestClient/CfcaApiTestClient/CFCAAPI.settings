@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CfcaApiTestClient" GeneratedClassName="CFCAAPI">
+  <Profiles />
+  <Settings>
+    <Setting Name="PrivateAESKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">9ByjWGN0dVK3qsxY</Value>
+    </Setting>
+    <Setting Name="PrivateAESKeyTime" Type="System.String" Scope="User">
+      <Value Profile="(Default)">20171024094122</Value>
+    </Setting>
+    <Setting Name="FixedAESKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SDGr4234gG465356</Value>
+    </Setting>
+    <Setting Name="FixedAESIV" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Xadiapdfaxi0s91D</Value>
+    </Setting>
+    <Setting Name="UserAccount" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BB170802CS</Value>
+    </Setting>
+    <Setting Name="APIUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://210.74.42.39/dataservice/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
