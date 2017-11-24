@@ -133,7 +133,7 @@ namespace CfcaApiTestClient
             string dataMessage = generateMessageHeader("CF00000001");
 
             dataMessage = dataMessage +
-                ",\"body\":{\"keyType\":\"0\",\"validationTime\":\"2\",\"lastKeyGenTime\":\"" +
+                ",\"body\":{\"keyType\":\"0\",\"validationTime\":\"0\",\"lastKeyGenTime\":\"" +
                 CFCAAPI.Default.PrivateAESKeyTime +
                 "\",\"lastKey\":\"" +
                 CFCAAPI.Default.PrivateAESKey +
